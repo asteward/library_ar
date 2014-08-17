@@ -72,4 +72,12 @@ def add_author
     add_author
   end
 end
+
+def list_authors
+  header
+  puts "All authors___________"
+  Author.order(:last_name).each {|author| puts "#{author.last_name}, #{author.first_name}"}
+  print "\nPress ENTER to continue..."
+  gets
+end
 main_menu
