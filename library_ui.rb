@@ -145,5 +145,25 @@ def list_books
   gets
 end
 
-
+def search_books
+  header
+  list_authors
+  puts "Please enter book author's first name:"
+  f_name = gets.chomp.capitalize
+  puts "Please enter book author's last name:"
+  l_name = gets.chomp.capitalize
+  author = Author.find_by first_name: f_name, last_name: l_name
+  if author
+    header
+    books = Book.where(author_id: author.id)
+    puts "Books by #{author.first_name} #{author.last_name}:"
+    books.each {|book| puts " #{book.title}"}
+  else
+    puts "Unable to locate #{f_name} #{l_name} in database. Please try again."
+    sleep 3
+    search_books
+  end
+  print "\nPress ENTER to continue..."
+  gets
+end
 main_menu
