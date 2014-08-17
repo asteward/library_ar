@@ -103,4 +103,35 @@ def book_menu
   end
 end
 
+def add_book
+  header
+  list_authors
+  puts "Please enter book author's first name:"
+  f_name = gets.chomp.capitalize
+  puts "Please enter book author's last name:"
+  l_name = gets.chomp.capitalize
+  author = Author.find_by first_name: f_name, last_name: l_name
+  if author
+    puts "Please enter book\'s title:"
+    title = gets.chomp
+    new_book = author.books.create({title: title})
+    if new_book.save
+      puts "#{author.first_name} #{author.last_name}'s #{new_book.title} has been added!"
+      print "\nPress ENTER to continue..."
+      gets
+    else
+      puts "An error occurred. Please be sure to enter a book title."
+      print "\nPress ENTER to continue..."
+      gets
+      add_author
+    end
+  else
+    puts "An error occurred. Please be sure to correctly enter the author's first and last name."
+    print "\nPress ENTER to continue..."
+    gets
+    add_author
+  end
+end
+
+
 main_menu
