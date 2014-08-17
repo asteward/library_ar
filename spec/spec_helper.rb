@@ -1,8 +1,7 @@
 require 'bundler/setup'
 Bundler.require(:default, :test)
 
-require 'author'
-require 'book'
+Dir[File.dirname(__FILE__) + '/../lib/*.rb'].each { |file| require file }
 
 ActiveRecord::Base.establish_connection(YAML::load(File.open('./db/config.yml'))["test"])
 
