@@ -53,4 +53,23 @@ def author_menu
     sleep 1.5
   end
 end
+
+def add_author
+  header
+  puts "Please enter Author\'s first name:"
+  f_name = gets.chomp
+  puts "Please enter Author\'s last name:"
+  l_name = gets.chomp
+  new_author = Author.create({first_name: f_name, last_name: l_name})
+  if new_author.save
+    puts "#{new_author.first_name} #{new_author.last_name} has been added!"
+    print "\nPress ENTER to continue..."
+    gets
+  else
+    puts "An error occurred. Please be sure to enter a first AND last name."
+    print "\nPress ENTER to continue..."
+    gets
+    add_author
+  end
+end
 main_menu
