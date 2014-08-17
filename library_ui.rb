@@ -81,6 +81,7 @@ def list_authors
   header
   puts "All authors___________"
   Author.order(:last_name).each {|author| puts "#{author.first_name} #{author.last_name}"}
+  puts "\n"
 end
 
 def book_menu
@@ -174,7 +175,11 @@ end
 def orwell
   puts "Great books by George Orwell:"
   books = Book.great_books
-  books.order(:title).each {|book| puts "#{book.title}"}
+  if books
+    books.order(:title).each {|book| puts "#{book.title}"}
+  else
+    puts "Sadly, there are now great books by George Orwell currently in the database."
+  end
   print "\nPress ENTER to continue..."
   gets
 end
