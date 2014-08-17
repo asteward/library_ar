@@ -51,6 +51,7 @@ def author_menu
   else
     puts "Invalid menu option. Try again."
     sleep 1.5
+    author_menu
   end
 end
 
@@ -80,4 +81,26 @@ def list_authors
   print "\nPress ENTER to continue..."
   gets
 end
+
+def book_menu
+  header
+  puts "A > Add Book"
+  puts "L > List All Books"
+  puts "S > Search Books by Author"
+  puts "R > Return to Main Menu"
+  case gets.chomp.upcase
+  when 'A'
+    add_book
+  when 'L'
+    list_books
+  when 'S'
+    search_books
+  when 'R'
+  else
+    puts "Invalid menu option. Try again."
+    sleep 1.5
+    book_menu
+  end
+end
+
 main_menu
