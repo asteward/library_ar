@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe Author do
+  it { should have_many(:books) }
+
   it 'validates the presence of a first and last name for the author' do
     author = Author.create({first_name: "", last_name: ""})
     expect(Author.all).to eq []
@@ -13,6 +15,4 @@ describe Author do
     expect(author.first_name).to eq "George"
     expect(author.last_name).to eq "Orwell"
   end
-
-  it { should have_many(:books) }
 end
