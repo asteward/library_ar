@@ -127,10 +127,22 @@ def add_book
     end
   else
     puts "An error occurred. Please be sure to correctly enter the author's first and last name."
+    puts "Also, be sure that author is listed in database."
     print "\nPress ENTER to continue..."
     gets
     add_author
   end
+end
+
+def list_books
+  header
+  puts "All books___________"
+  Book.order(:title).each do |book|
+    author = Author.find(book.author_id)
+    puts "#{book.title}, by #{author.first_name} #{author.last_name}"
+  end
+  print "\nPress ENTER to continue..."
+  gets
 end
 
 
