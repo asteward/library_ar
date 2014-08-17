@@ -16,6 +16,7 @@ end
 
 def main_menu
   header
+  puts "Great Books:"
   puts "A > Author Menu"
   puts "B > Book Menu" if (Author.all.length > 0)
   puts "E > Exit\n"
@@ -47,6 +48,8 @@ def author_menu
     add_author
   when 'L'
     list_authors
+    print "\nPress ENTER to continue..."
+    gets
   when 'R'
   else
     puts "Invalid menu option. Try again."
@@ -77,9 +80,7 @@ end
 def list_authors
   header
   puts "All authors___________"
-  Author.order(:last_name).each {|author| puts "#{author.last_name}, #{author.first_name}"}
-  print "\nPress ENTER to continue..."
-  gets
+  Author.order(:last_name).each {|author| puts "#{author.first_name} #{author.last_name}"}
 end
 
 def book_menu
@@ -87,6 +88,7 @@ def book_menu
   puts "A > Add Book"
   puts "L > List All Books"
   puts "S > Search Books by Author"
+  puts "G > List Great Books by George Orwell"
   puts "R > Return to Main Menu"
   case gets.chomp.upcase
   when 'A'
@@ -95,6 +97,8 @@ def book_menu
     list_books
   when 'S'
     search_books
+  when 'G'
+    orwell
   when 'R'
   else
     puts "Invalid menu option. Try again."
@@ -163,6 +167,14 @@ def search_books
     sleep 3
     search_books
   end
+  print "\nPress ENTER to continue..."
+  gets
+end
+
+def orwell
+  puts "Great books by George Orwell:"
+  books = Book.great_books
+  books.order(:title).each {|book| puts "#{book.title}"}
   print "\nPress ENTER to continue..."
   gets
 end
