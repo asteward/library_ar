@@ -7,6 +7,6 @@ gem 'rake'
 
 group :test do
   gem 'shoulda-matchers'
-  gem 'rspec', '~> 2.99'
+  gem 'rspec', '~> 3.0'
   gem 'pry'
 end
