@@ -22,7 +22,7 @@ def main_menu
   print "Please select a menu option: "
   choice = gets.chomp.upcase
   (choice = "z") if ((Author.all.length == 0) && (choice == "B"))
-  case (choice)
+  case choice
   when 'A'
     author_menu
   when 'B'
@@ -35,5 +35,22 @@ def main_menu
     sleep 1.5
   end
   main_menu
+end
+
+def author_menu
+  header
+  puts "A > Add Author"
+  puts "L > List All Authors"
+  puts "R > Return to Main Menu"
+  case gets.chomp.upcase
+  when 'A'
+    add_author
+  when 'L'
+    list_authors
+  when 'R'
+  else
+    puts "Invalid menu option. Try again."
+    sleep 1.5
+  end
 end
 main_menu
